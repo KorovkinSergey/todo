@@ -50,7 +50,7 @@ function App() {
          tasksCount={tasksCount}
          filterTasksHandler={filterTasksHandler}
          deleteCompletedTasks={deleteCompletedTasks}
-         filter={'All'}
+         filter={filter}
        />
     </section>
   )
