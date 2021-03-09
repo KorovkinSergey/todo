@@ -11,7 +11,6 @@ function Task({task, changeTask, deleteTask}) {
 
 	const changeCheckbox = () => changeTask({...task, completed: !task.completed})
 
-
 	const onKeyEnterHandle = e => {
 		if (e.charCode === 13) {
 			changeTask({...task, title})
@@ -30,13 +29,15 @@ function Task({task, changeTask, deleteTask}) {
 					<button className="icon icon-edit" onClick={() => setChangeTitle(true)}/>
 					<button className="icon icon-destroy" onClick={() => deleteTask(task)}/>
 				</div>
-				: <input type="text" className="edit"
-								 value={title}
-								 onChange={e => {
-									 setTitle(e.target.value)
-								 }}
-								 onKeyPress={e => onKeyEnterHandle(e)}
-								 autoFocus={true}
+				: <input
+					type="text"
+					className="edit"
+					value={title}
+					onChange={e => {
+						setTitle(e.target.value)
+					}}
+					onKeyPress={e => onKeyEnterHandle(e)}
+					autoFocus={true}
 				/>
 			}
 		</li>
@@ -50,14 +51,16 @@ Task.propTypes = {
 	deleteTask: PropTypes.func
 }
 
-Task.defaultProps  = {
+Task.defaultProps = {
 	task: {
-		title:'defaultProps',
+		title: 'defaultProps',
 		completed: false,
 		id: new Date().getTime().toString()
 	},
-	changeTask: () => {},
-	deleteTask: () => {}
+	changeTask: () => {
+	},
+	deleteTask: () => {
+	}
 }
 
 export default Task

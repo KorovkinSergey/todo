@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 function Footer({filterTasksHandler, deleteCompletedTasks, filter, tasksCount}) {
 
-
 	const onClickHandler = e => filterTasksHandler(e.target.textContent)
 
 	return (
@@ -41,9 +40,11 @@ Footer.propTypes = {
 	tasksCount: PropTypes.number,
 }
 
-Footer.defaultProps  = {
-	filterTasksHandler: () => {},
-	deleteCompletedTasks: () => {},
+Footer.defaultProps = {
+	filterTasksHandler: () => {
+	},
+	deleteCompletedTasks: () => {
+	},
 	filter: 'All',
 	tasksCount: 0,
 }

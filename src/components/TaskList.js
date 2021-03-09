@@ -3,17 +3,18 @@ import Task from './Task'
 import PropTypes from 'prop-types'
 
 
-function TaskList ({tasks, changeTask, deleteTask}) {
- return (
-	 <ul className="todo-list">
-		 {tasks.map((task, index) => <Task
-			 key={index}
-			 task={task}
-			 changeTask={changeTask}
-			 deleteTask={deleteTask}
-		 />)}
-	 </ul>
- )
+function TaskList({tasks, changeTask, deleteTask}) {
+
+	return (
+		<ul className="todo-list">
+			{tasks.map((task, index) => <Task
+				key={index}
+				task={task}
+				changeTask={changeTask}
+				deleteTask={deleteTask}
+			/>)}
+		</ul>
+	)
 }
 
 TaskList.propTypes = {
@@ -22,10 +23,12 @@ TaskList.propTypes = {
 	deleteTask: PropTypes.func,
 }
 
-TaskList.defaultProps  = {
+TaskList.defaultProps = {
 	tasks: [],
-	changeTask: () => {},
-	deleteTask: () => {}
+	changeTask: () => {
+	},
+	deleteTask: () => {
+	}
 }
 
 export default TaskList

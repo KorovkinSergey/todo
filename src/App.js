@@ -6,54 +6,56 @@ import './index.css'
 
 function App() {
 
-  const [tasks, setTasks] = useState([])
+	const [tasks, setTasks] = useState([])
+
   const [filterTasks, setFilterTasks] = useState(tasks)
 
-  const [filter, setFilter] = useState('All')
+	const [filter, setFilter] = useState('All')
 
-  const addNewTask = (task) => setTasks([...tasks, task])
+	const addNewTask = (task) => setTasks([...tasks, task])
 
-  const changeTask = task => setTasks(tasks.map(item => item.id === task.id ? task : item))
+	const changeTask = task => setTasks(tasks.map(item => item.id === task.id ? task : item))
 
-  const deleteTask = task => setTasks(tasks.filter(item => item.id !== task.id))
+	const deleteTask = task => setTasks(tasks.filter(item => item.id !== task.id))
 
-  const deleteCompletedTasks = () => setTasks(tasks.filter(task => !task.completed))
+	const deleteCompletedTasks = () => setTasks(tasks.filter(task => !task.completed))
 
-  const tasksCount = tasks.reduce((count, task) => task.completed !== true ? count +=1 : count, 0)
+	const tasksCount = tasks.reduce((count, task) => task.completed !== true ? count += 1 : count, 0)
 
-  useEffect(() => {
-    switch (filter){
-      case 'Active':
-        setFilterTasks(tasks.filter(task => !task.completed))
-        break
-      case 'Completed':
-        setFilterTasks(tasks.filter(task => task.completed))
-        break
-      default: setFilterTasks(tasks)
-    }
+	useEffect(() => {
+		switch (filter) {
+			case 'Active':
+				setFilterTasks(tasks.filter(task => !task.completed))
+				break
+			case 'Completed':
+				setFilterTasks(tasks.filter(task => task.completed))
+				break
+			default:
+				setFilterTasks(tasks)
+		}
 
-  }, [tasks,filter])
+	}, [tasks, filter])
 
-  const filterTasksHandler = (fil) => setFilter(fil)
+	const filterTasksHandler = (fil) => setFilter(fil)
 
-  return (
-    <section className='todoapp'>
-       <Header addNewTask={addNewTask} />
-       <section className="main">
-         <TaskList
-           tasks={filterTasks}
-           changeTask={changeTask}
-           deleteTask={deleteTask}
-         />
-       </section>
-       <Footer
-         tasksCount={tasksCount}
-         filterTasksHandler={filterTasksHandler}
-         deleteCompletedTasks={deleteCompletedTasks}
-         filter={filter}
-       />
-    </section>
-  )
+	return (
+		<section className='todoapp'>
+			<Header addNewTask={addNewTask}/>
+			<section className="main">
+				<TaskList
+					tasks={filterTasks}
+					changeTask={changeTask}
+					deleteTask={deleteTask}
+				/>
+			</section>
+			<Footer
+				tasksCount={tasksCount}
+				filterTasksHandler={filterTasksHandler}
+				deleteCompletedTasks={deleteCompletedTasks}
+				filter={filter}
+			/>
+		</section>
+	)
 }
 
 export default App

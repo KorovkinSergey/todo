@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 
 
-
 function Header({addNewTask}) {
 	const [input, setInput] = useState('')
 
@@ -36,10 +35,10 @@ Header.propTypes = {
 	addNewTask: PropTypes.func
 }
 
-Header.defaultProps  = {
-	addNewTask: () => {}
+Header.defaultProps = {
+	addNewTask: () => {
+	}
 }
-
 
 
 export default Header
