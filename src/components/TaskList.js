@@ -3,11 +3,19 @@ import Task from './Task'
 import PropTypes from 'prop-types'
 
 
-function TaskList({tasks, changeTask, deleteTask}) {
+function TaskList({tasks, filter, changeTask, deleteTask}) {
 
 	return (
 		<ul className="todo-list">
-			{tasks.map((task, index) => <Task
+			{tasks.filter(item => {
+				switch (filter) {
+					case 'Active':
+						return !item.completed
+					case 'Completed':
+						return item.completed
+					default:
+						return item
+			}}).map((task, index) => <Task
 				key={index}
 				task={task}
 				changeTask={changeTask}

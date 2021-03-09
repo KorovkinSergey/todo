@@ -8,11 +8,9 @@ function App() {
 
 	const [tasks, setTasks] = useState([])
 
-  const [filterTasks, setFilterTasks] = useState(tasks)
-
 	const [filter, setFilter] = useState('All')
 
-	const addNewTask = (task) => setTasks([...tasks, task])
+	const addNewTask = task => setTasks([...tasks, task])
 
 	const changeTask = task => setTasks(tasks.map(item => item.id === task.id ? task : item))
 
@@ -23,16 +21,7 @@ function App() {
 	const tasksCount = tasks.reduce((count, task) => task.completed !== true ? count += 1 : count, 0)
 
 	useEffect(() => {
-		switch (filter) {
-			case 'Active':
-				setFilterTasks(tasks.filter(task => !task.completed))
-				break
-			case 'Completed':
-				setFilterTasks(tasks.filter(task => task.completed))
-				break
-			default:
-				setFilterTasks(tasks)
-		}
+
 
 	}, [tasks, filter])
 
@@ -43,7 +32,8 @@ function App() {
 			<Header addNewTask={addNewTask}/>
 			<section className="main">
 				<TaskList
-					tasks={filterTasks}
+					tasks={tasks}
+					filter={filter}
 					changeTask={changeTask}
 					deleteTask={deleteTask}
 				/>
